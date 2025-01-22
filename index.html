@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Copier</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <script defer src="copy-template.js"></script>
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Template Copier</h1>
+      <p class="subtitle">Select a template to copy:</p>
+      
+      <div class="field">
+        <div class="control">
+          <div class="select">
+            <select id="template-select">
+              <option disabled selected>Loading templates...</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button id="copy-button" class="button is-primary" disabled>Copy Selected Template</button>
+      <p id="status-message" class="notification is-hidden mt-3"></p>
+    </div>
+  </section>
+</body>
+</html>
