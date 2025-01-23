@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const copyButton = document.getElementById("copy-button");
-  const templateSelect = document.getElementById("template-select");
+  const templateButtonsContainer = document.getElementById("template-buttons");
   const statusMessage = document.getElementById("status-message");
   const templatesUrl = `${window.location.origin}/templates.json`;
 
-  // Fetch the list of templates and populate the dropdown
+  // Fetch templates list and generate buttons
   async function loadTemplates() {
     try {
       const response = await fetch(templatesUrl);
@@ -12,43 +11,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const templates = await response.json();
 
-      // Clear existing options and add templates
-      templateSelect.innerHTML = templates
-        .map(template => `<option value="${template}">${template}</option>`)
-        .join("");
-
-      copyButton.disabled = false; // Enable the button
+      // Create a button for each template
+      templates.forEach(template => {
+        const button = document.createElement("button");
+        button.className = "button is-primary";
+        button.textContent = template;
+        button.addEventListener("click", () => copyTemplate(template));
+        templateButtonsContainer.appendChild(button);
+      });
     } catch (error) {
       console.error("Error loading templates:", error);
-      templateSelect.innerHTML = `<option disabled>Error loading templates</option>`;
+      templateButtonsContainer.innerHTML = `<p class="notification is-danger">Error loading templates. Please try again later.</p>`;
     }
   }
 
-  // Handle template copying
-  copyButton.addEventListener("click", async () => {
-    const selectedTemplate = templateSelect.value; // Get selected template
-    const templateUrl = `${window.location.origin}/template/${selectedTemplate}`; // Construct URL
-
+  // Copy template content to clipboard
+  async function copyTemplate(templateName) {
+    const templateUrl = `${window.location.origin}/template/${templateName}`;
     try {
       const response = await fetch(templateUrl);
-      if (!response.ok) throw new Error("Failed to fetch the template file.");
+      if (!response.ok) throw new Error(`Failed to fetch ${templateName}.`);
 
       const text = await response.text();
 
       // Copy text to clipboard
       await navigator.clipboard.writeText(text);
 
-      statusMessage.textContent = `Template "${selectedTemplate}" copied to clipboard!`;
+      statusMessage.textContent = `Template "${templateName}" copied to clipboard!`;
       statusMessage.classList.remove("is-hidden", "is-danger");
       statusMessage.classList.add("is-success");
     } catch (error) {
       console.error("Error copying template:", error);
-      statusMessage.textContent = `Failed to copy "${selectedTemplate}". Please try again.`;
+      statusMessage.textContent = `Failed to copy "${templateName}". Please try again.`;
       statusMessage.classList.remove("is-hidden", "is-success");
       statusMessage.classList.add("is-danger");
     }
-  });
+  }
 
-  // Initialize the dropdown
+  // Initialize template buttons
   loadTemplates();
 });
