@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const templateButtonsContainer = document.getElementById("template-buttons");
   const statusMessage = document.getElementById("status-message");
-  const templatesUrl = `root/templates.json`;
+  const templatesUrl = `${window.location.origin}/templates.json`;
 
   // Fetch templates list and generate buttons
   async function loadTemplates() {
@@ -48,25 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-	async function loadTemplates() {
-  try {
-    const response = await fetch(templatesUrl);
-    if (!response.ok) throw new Error("Failed to fetch templates list.");
-
-    const templates = await response.json();
-    console.log("Templates loaded:", templates);
-
-    templates.forEach(template => {
-      const button = document.createElement("button");
-      button.className = "button is-primary";
-      button.textContent = template;
-      button.addEventListener("click", () => copyTemplate(template));
-      templateButtonsContainer.appendChild(button);
-    });
-  } catch (error) {
-    console.error("Error loading templates:", error);
-  }
-}
   // Initialize template buttons
   loadTemplates();
 });
