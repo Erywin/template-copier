@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const templateButtonsContainer = document.getElementById("template-buttons");
   const statusMessage = document.getElementById("status-message");
-  const templatesUrl = `${window.location.origin}/templates.json`;
+  const templatesUrl = `${window.location.origin}/template-copier/templates.json`;
 
   console.log("Script loaded, initializing...");
 
