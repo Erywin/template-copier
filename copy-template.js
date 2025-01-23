@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const templateButtonsContainer = document.getElementById("template-buttons");
   const statusMessage = document.getElementById("status-message");
-  const templatesUrl = `${window.location.origin}/templates.json`;
+  const templatesUrl = `root/templates.json`;
 
   // Fetch templates list and generate buttons
   async function loadTemplates() {
