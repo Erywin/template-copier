@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Copy template content to clipboard
   async function copyTemplate(templateName) {
-    const templateUrl = `${window.location.origin}/template/${templateName}`;
+    const templateUrl = `${window.location.origin}/template-copier/template/${templateName}`;
     console.log("Attempting to copy template:", templateName, "from:", templateUrl);
 
     try {
