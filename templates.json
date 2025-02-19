@@ -1,7 +1,10 @@
 [
+  "B12_v1.txt",
   "GeriCheckup_v1.txt",
+  "IUD_v1.txt",
   "InjectionIM_v2.txt",
   "RxRefill_v1.txt",
-  "SOAPNote_v1.txt",
-  "IUD_v1.txt"
+  "SOAP-Inpers_v1.txt",
+  "SOAP-Phone_v1.txt",
+  "Xolair_v1.txt"
 ]
